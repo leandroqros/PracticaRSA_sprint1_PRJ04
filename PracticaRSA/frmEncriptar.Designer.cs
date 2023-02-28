@@ -47,6 +47,7 @@
             this.btn_encrypt.TabIndex = 34;
             this.btn_encrypt.Text = "Encriptar";
             this.btn_encrypt.UseVisualStyleBackColor = true;
+            this.btn_encrypt.Click += new System.EventHandler(this.btn_encrypt_Click);
             // 
             // tbx_pubkey
             // 
@@ -64,6 +65,7 @@
             this.btn_showKey.TabIndex = 32;
             this.btn_showKey.Text = "Enseñar clave";
             this.btn_showKey.UseVisualStyleBackColor = true;
+            this.btn_showKey.Click += new System.EventHandler(this.btn_showKey_Click);
             // 
             // btn_send
             // 
@@ -114,12 +116,13 @@
             this.btn_obtainKey.TabIndex = 26;
             this.btn_obtainKey.Text = "Obtener clave";
             this.btn_obtainKey.UseVisualStyleBackColor = true;
+            this.btn_obtainKey.Click += new System.EventHandler(this.btn_obtainKey_Click);
             // 
             // frmEncriptar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(501, 345);
             this.Controls.Add(this.btn_encrypt);
             this.Controls.Add(this.tbx_pubkey);
             this.Controls.Add(this.btn_showKey);

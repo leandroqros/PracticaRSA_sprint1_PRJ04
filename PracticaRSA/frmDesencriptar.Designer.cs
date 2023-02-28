@@ -55,9 +55,10 @@
             // 
             // tbx_decrypted
             // 
+            this.tbx_decrypted.Enabled = false;
             this.tbx_decrypted.Location = new System.Drawing.Point(145, 268);
             this.tbx_decrypted.Name = "tbx_decrypted";
-            this.tbx_decrypted.Size = new System.Drawing.Size(288, 20);
+            this.tbx_decrypted.Size = new System.Drawing.Size(400, 20);
             this.tbx_decrypted.TabIndex = 24;
             // 
             // tbx_crypted
@@ -116,6 +117,7 @@
             this.btn_generate.TabIndex = 7;
             this.btn_generate.Text = "Generar Claves";
             this.btn_generate.UseVisualStyleBackColor = true;
+            this.btn_generate.Click += new System.EventHandler(this.btn_generate_Click);
             // 
             // btn_routeXML
             // 
@@ -125,6 +127,7 @@
             this.btn_routeXML.TabIndex = 6;
             this.btn_routeXML.Text = "...";
             this.btn_routeXML.UseVisualStyleBackColor = true;
+            this.btn_routeXML.Click += new System.EventHandler(this.btn_routeXML_Click);
             // 
             // tbx_routeXML
             // 
@@ -162,7 +165,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 325);
+            this.ClientSize = new System.Drawing.Size(557, 301);
             this.Controls.Add(this.btn_decrypt);
             this.Controls.Add(this.tbx_decrypted);
             this.Controls.Add(this.tbx_crypted);
