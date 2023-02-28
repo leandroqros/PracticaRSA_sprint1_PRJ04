@@ -97,5 +97,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Encriptar\Encriptar.csproj">
+      <Project>{c7b0069a-a249-458d-8f33-a1c24dc70f1d}</Project>
+      <Name>Encriptar</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

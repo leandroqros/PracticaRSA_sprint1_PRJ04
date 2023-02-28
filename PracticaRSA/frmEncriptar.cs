@@ -9,6 +9,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Encriptar;
 
 namespace PracticaRSA
 {
@@ -18,12 +19,14 @@ namespace PracticaRSA
         {
             InitializeComponent();
         }
+
+        Encriptacion crypt = new Encriptacion();
+        private byte[] dataEncrypted;
         string fileContent;
+        string filePath;
 
         private void btn_obtainKey_Click(object sender, EventArgs e)
         {
-            string filePath;
-
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = "c:\\";
@@ -42,15 +45,13 @@ namespace PracticaRSA
             }
         }
 
-
-
         private void btn_showKey_Click(object sender, EventArgs e)
         {
             //Si no hay xml seleccionado
             if (fileContent == null)
             {
-                tbx_pubkey.Font = new Font("Microsoft Sans Serif" , 13, FontStyle.Bold, GraphicsUnit.Point);
-                tbx_pubkey.Text = "No hay nigun archivo seleccionado, por favor, haga click en el boton 'Obtener clave' y busque su clave publica en formato .XML";
+                tbx_pubkey.Font = new Font("Microsoft Sans Serif" , 11, FontStyle.Bold, GraphicsUnit.Point);
+                tbx_pubkey.Text = crypt.archivoNoSeleccionado();
             }
             else
             {
@@ -74,23 +75,21 @@ namespace PracticaRSA
                 Console.WriteLine("Text: {0}", ByteConverter.GetString(decryptedData));
             }
 
+            byte[] cadenaEncripitada = crypt.Encrypt(filePath, dataToEncrypt);
+            string textoEncriptado = crypt.byteToString(cadenaEncripitada);
+            tbx_crypted.Text = textoEncriptado;
+        }
 
-            //using (RSACryptoServiceProvider rsa = new RSACryptoServiceProvider())
-            //{
-            //    RSAParameters rsaParams = rsa.ExportParameters(false);
-            //    encryptedData = RSAEncrypt(dataToEncrypt, rsaParams);
-            //}
+        private void btn_send_Click(object sender, EventArgs e)
+        {
+            if (tbx_crypted.Text != null)
+            {
+                frmDesencriptar frm = new frmDesencriptar();
+                CodifyToSend = tbx_crypted.Text;
+                frm.cadena = CodifyToSend;
+                frm.Show;
+            }
 
-            //public byte[] RSAEncrypt(byte[] DataToEncrypt, RSAParameters RSAKeyInfo)
-
-            //{
-            //    using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
-            //    {
-            //        RSA.ImportParameters(RSAKeyInfo);
-            //        byte[] dataEncrypted = RSA.Encrypt(DataToEncrypt, false);
-            //    }
-            //    return dataEncrypted;
-            //}
         }
     }
 }

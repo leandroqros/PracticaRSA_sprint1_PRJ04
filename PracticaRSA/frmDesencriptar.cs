@@ -18,6 +18,7 @@ namespace PracticaRSA
         {
             InitializeComponent();
         }
+        public string cadena { get; set; }
 
         private void btn_generate_Click(object sender, EventArgs e)
         {
@@ -57,6 +58,9 @@ namespace PracticaRSA
                 }
             }
         }
+
+
+
     }
 
 }
