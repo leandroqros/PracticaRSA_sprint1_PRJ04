@@ -40,7 +40,7 @@ namespace Encriptar
                 }
                 return dataEncryptedRSA;
             }
-            salida = byteToString(dataEncryptedRSA);
+            salida = BitConverter.ToString(dataEncryptedRSA);
             return salida;
         }
 
@@ -59,14 +59,15 @@ namespace Encriptar
             return encryptedData;
         }
 
-        public byte[] Decrypt(string keyName)
+        public byte[] Decrypt(byte[] rutaByte)
         {
-            //string keyName = "Key01";
+            //string keyName = "Testemunha";
 
             CspParameters cspp = new CspParameters();
+            string keyName = "Testemunha";
             cspp.KeyContainerName = keyName;
             RSACryptoServiceProvider rsa = new RSACryptoServiceProvider(cspp);
-            decryptedData = rsa.Decrypt(DataToDecrypt, false);
+            decryptedData = rsa.Decrypt(rutaByte, false);
 
             return decryptedData;
         }

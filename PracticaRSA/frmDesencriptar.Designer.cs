@@ -52,6 +52,7 @@
             this.btn_decrypt.TabIndex = 20;
             this.btn_decrypt.Text = "Desencriptar";
             this.btn_decrypt.UseVisualStyleBackColor = true;
+            this.btn_decrypt.Click += new System.EventHandler(this.btn_decrypt_Click);
             // 
             // tbx_decrypted
             // 
@@ -186,7 +187,6 @@
 
         private System.Windows.Forms.Button btn_decrypt;
         private System.Windows.Forms.TextBox tbx_decrypted;
-        private System.Windows.Forms.TextBox tbx_crypted;
         private System.Windows.Forms.Label lblMsgO;
         private System.Windows.Forms.Label lblMsgEncrip;
         private System.Windows.Forms.Label lblGrupo;
@@ -197,5 +197,6 @@
         private System.Windows.Forms.TextBox tbx_container;
         private System.Windows.Forms.Label lblArchivoXML;
         private System.Windows.Forms.Label lblKC;
+        public System.Windows.Forms.TextBox tbx_crypted;
     }
 }

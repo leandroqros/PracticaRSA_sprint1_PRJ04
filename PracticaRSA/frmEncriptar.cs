@@ -22,8 +22,7 @@ namespace PracticaRSA
 
         Encriptacion crypt = new Encriptacion();
         private byte[] dataEncrypted;
-        string fileContent;
-        string filePath;
+        string fileContent, filePath;
 
         private void btn_obtainKey_Click(object sender, EventArgs e)
         {
@@ -31,8 +30,6 @@ namespace PracticaRSA
             {
                 openFileDialog.InitialDirectory = "c:\\";
                 openFileDialog.Filter = "XML Files (*.xml)|*.xml";
-                openFileDialog.RestoreDirectory = true;
-
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     filePath = openFileDialog.FileName;
@@ -60,36 +57,47 @@ namespace PracticaRSA
             }
         }
 
-        private void btn_encrypt_Click(object sender, EventArgs e)
+        private void btn_encrypt_Click(object sender, EventArgs e) //ok
         {
-            UnicodeEncoding ByteConverter = new UnicodeEncoding();
-
-            string textoUsuario = tbx_original.Text;
-            byte[] dataToEncrypt = ByteConverter.GetBytes(textoUsuario);
-
-            using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
+            if (tbx_original.Text == "" || tbx_original.Text == "No hay nada que encriptar. Escriba algo diferente.")
             {
-                byte[] encryptedData = RSA.Encrypt(dataToEncrypt, false);
-                byte[] decryptedData = RSA.Decrypt(encryptedData, false);
-
-                Console.WriteLine("Text: {0}", ByteConverter.GetString(decryptedData));
+                tbx_original.Text = "No hay nada que encriptar. Escriba algo diferente.";
             }
+            else
+            {
+                UnicodeEncoding ByteConverter = new UnicodeEncoding();
 
-            byte[] cadenaEncripitada = crypt.Encrypt(filePath, dataToEncrypt);
-            string textoEncriptado = crypt.byteToString(cadenaEncripitada);
-            tbx_crypted.Text = textoEncriptado;
+                string textoUsuario = tbx_original.Text;
+                byte[] dataToEncrypt = ByteConverter.GetBytes(textoUsuario);
+
+                //using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
+                //{
+                //    byte[] encryptedData = RSA.Encrypt(dataToEncrypt, false);
+                //    byte[] decryptedData = RSA.Decrypt(encryptedData, false);
+
+                //    //Console.WriteLine("Text: {0}", ByteConverter.GetString(decryptedData));
+                //}
+
+                dataEncrypted = crypt.Encrypt(filePath, dataToEncrypt);
+                //string textoEncriptado = BitConverter.ToString(cadenaEncripitada);
+                tbx_crypted.Text = BitConverter.ToString(dataEncrypted);
+            }
         }
 
         private void btn_send_Click(object sender, EventArgs e)
         {
             if (tbx_crypted.Text != null)
             {
-                frmDesencriptar frm = new frmDesencriptar();
-                CodifyToSend = tbx_crypted.Text;
-                frm.cadena = CodifyToSend;
-                frm.Show;
+                foreach (Form item in Application.OpenForms)
+                {
+                    if (item.Name == "frmDesencriptar")
+                    {
+                        frmDesencriptar formul = (frmDesencriptar)item;
+                        //formul.Show();
+                        formul.recibirByte = dataEncrypted;
+                    }
+                }
             }
-
         }
     }
 }
