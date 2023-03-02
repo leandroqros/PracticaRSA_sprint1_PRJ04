@@ -59,12 +59,12 @@ namespace Encriptar
             return encryptedData;
         }
 
-        public byte[] Decrypt(byte[] rutaByte)
+        public byte[] Decrypt(string container, byte[] rutaByte)
         {
-            //string keyName = "Testemunha";
+            //string keyName = "Shakira";
 
             CspParameters cspp = new CspParameters();
-            string keyName = "Testemunha";
+            string keyName = container;
             cspp.KeyContainerName = keyName;
             RSACryptoServiceProvider rsa = new RSACryptoServiceProvider(cspp);
             decryptedData = rsa.Decrypt(rutaByte, false);
