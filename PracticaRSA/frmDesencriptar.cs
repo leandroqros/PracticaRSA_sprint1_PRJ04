@@ -23,11 +23,14 @@ namespace PracticaRSA
         UnicodeEncoding ByteConverter = new UnicodeEncoding();
         Encriptacion crypt = new Encriptacion();
         private byte[] myVar;
+        string container;
 
         private void btn_generate_Click(object sender, EventArgs e)
         {
             CspParameters cspp = new CspParameters();
-            const string nomContainer = "Testemunha";
+            //string nomContainer = "Shakira";
+            string nomContainer = tbx_container.Text;
+            container = nomContainer;
 
             cspp.KeyContainerName = nomContainer;
             RSACryptoServiceProvider rsa = new RSACryptoServiceProvider(cspp);
@@ -63,7 +66,7 @@ namespace PracticaRSA
 
         private void btn_decrypt_Click(object sender, EventArgs e)
         {
-            byte[] hola = crypt.Decrypt(recibirByte);
+            byte[] hola = crypt.Decrypt(container, recibirByte);
 
             tbx_decrypted.Text = ByteConverter.GetString(hola);
         }
