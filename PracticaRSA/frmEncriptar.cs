@@ -70,16 +70,7 @@ namespace PracticaRSA
                 string textoUsuario = tbx_original.Text;
                 byte[] dataToEncrypt = ByteConverter.GetBytes(textoUsuario);
 
-                //using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
-                //{
-                //    byte[] encryptedData = RSA.Encrypt(dataToEncrypt, false);
-                //    byte[] decryptedData = RSA.Decrypt(encryptedData, false);
-
-                //    //Console.WriteLine("Text: {0}", ByteConverter.GetString(decryptedData));
-                //}
-
                 dataEncrypted = crypt.Encrypt(filePath, dataToEncrypt);
-                //string textoEncriptado = BitConverter.ToString(cadenaEncripitada);
                 tbx_crypted.Text = BitConverter.ToString(dataEncrypted);
             }
         }
@@ -93,7 +84,6 @@ namespace PracticaRSA
                     if (item.Name == "frmDesencriptar")
                     {
                         frmDesencriptar formul = (frmDesencriptar)item;
-                        //formul.Show();
                         formul.recibirByte = dataEncrypted;
                     }
                 }

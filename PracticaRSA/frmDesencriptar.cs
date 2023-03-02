@@ -20,6 +20,7 @@ namespace PracticaRSA
             InitializeComponent();
         }
 
+        UnicodeEncoding ByteConverter = new UnicodeEncoding();
         Encriptacion crypt = new Encriptacion();
         private byte[] myVar;
 
@@ -62,20 +63,12 @@ namespace PracticaRSA
 
         private void btn_decrypt_Click(object sender, EventArgs e)
         {
-            //rsaEnc = new RSACryptoServiceProvider();
-            //string xmlKey = File.ReadAllText("c:\\carpetateste\\Publickey.xml");
-            //rsaEnc.FromXmlString(xmlKey);
-            //UnicodeEncoding ByteConverter = new UnicodeEncoding();
+            byte[] hola = crypt.Decrypt(recibirByte);
 
-            //string textoUsuario = tbx_crypted.Text;
-            //string hola = ByteConverter.GetBytes(myVar);
-
-            myVar = crypt.Decrypt(recibirByte);
-
-            tbx_decrypted.Text = Convert.ToString(myVar);
-            //crypt.Decrypt(tbx_crypted.Text);
+            tbx_decrypted.Text = ByteConverter.GetString(hola);
         }
 
+        //Propiedad
         public byte[] recibirByte
         {
             get { return myVar; }
